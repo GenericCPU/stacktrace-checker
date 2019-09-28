@@ -8,7 +8,7 @@ LEN=5
 ##Default directory
 DEFAULT_DIRECTORY=~/
 #-- Uncomment the line below to enable default working directory --#
-#cd ~/
+#cd $DEFAULT_DIRECTORY
 
 #######################
 
