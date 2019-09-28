@@ -16,8 +16,14 @@ linux: grep, ack, sed
 # installation
 Run the following commands ideally within your home directory
 ```
-git clone https://github.com/GenericCPU/stacktrace-checker.git
-sudo chmod +x stacktrace-checker/checkout
+git clone https://github.com/GenericCPU/stacktrace-checker.git ~/
+sudo chmod +x ~/stacktrace-checker/checkout
 ```
+Then run using
+`~/stacktrace-checker/checkout /path/to/source/code:lineNumber`
+
 To access anywhere add the following line to the end of your .bashrc:
 `export PATH=$PATH:~/stacktrace-checker`
+
+If so run using
+`checkout /path/to/source/code:lineNumber`
