@@ -12,6 +12,7 @@ Edit the variables at the top of the 'checkout' file to either enable a default 
 
 # requirements
 Linux: grep, ack, sed
+
 Ubuntu:
 ```
 sudo apt install ack sed grep
