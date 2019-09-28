@@ -1,0 +1,73 @@
+#!/bin/bash
+
+#Config
+
+##Default length
+LEN=5
+
+##Default directory
+DEFAULT_DIRECTORY=~/
+#-- Uncomment the line below to enable default working directory --#
+#cd ~/
+
+#######################
+
+POSITIONAL=()
+
+for i in "$@"
+do
+case $i in
+    -l|--length)
+    LEN="$2"
+    if [[ ! "$LEN" =~ ^[0-9]+$ ]]; then
+	echo "please supply a number for the length"
+	exit
+    fi
+    shift # past argument
+    ;;
+    *:*)    # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+if [ $# -eq 0 ]
+  then
+    echo "Usage: checkout [OPTION] PATH:LINENUMBER"
+    exit
+fi
+
+DIR="$(cut -d':' -f1 <<< $1)"
+LINE="$(cut -d':' -f2 <<< $1)"
+
+if [[ ! -f "$DIR" ]]; then
+	echo
+	echo "\"$DIR\" is not a valid file-name"
+	echo
+    	echo "Usage: checkout [OPTION] PATH:LINENUMBER"
+	echo "-------------------------------------------"
+	echo
+	echo "Options: -l, --length	number of lines printed above and below"
+	echo
+	exit
+fi
+	
+if [[ ! "$LINE" =~ ^[0-9]+$ ]] ; then
+	echo
+	echo "\"$LINE\" is not a valid number"
+    	echo	
+	echo "Usage: checkout [OPTION] PATH:LINENUMBER"
+	echo "-------------------------------------------"
+	echo
+	echo "Options: -l, --length	number of lines printed above and below"
+	echo
+	exit
+fi
+
+
+MIN=$(echo $(expr $LINE - $LEN) | sed -e 's/^-.*/1/' -e 's/^0/1/')
+MAX=$(expr $LINE + $LEN)
+cat -n $DIR | sed -n "$MIN,$MAX p" | ack --passthru " $LINE	"
+
