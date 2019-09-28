@@ -8,7 +8,7 @@ Options: -l, --length number of lines printed above and below
 ```
 
 # configuration
-Edit the variables at the top of 'stacktrace-checker/checkout' to enable a default working directory or to change the default length
+Edit the variables at the top of the 'checkout' file to either enable a default working directory or to change the default print length
 
 # requirements
 linux: grep, ack, sed
