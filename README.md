@@ -21,7 +21,7 @@ sudo apt install ack sed grep
 # installation
 Run the following commands ideally within your home directory
 ```
-git clone https://github.com/GenericCPU/stacktrace-checker.git ~/
+git clone https://github.com/GenericCPU/stacktrace-checker.git ~/stacktrace-checker
 sudo chmod +x ~/stacktrace-checker/checkout
 ```
 Then run using
